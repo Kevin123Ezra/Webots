@@ -1,0 +1,16 @@
+# Folders requested to ignore
+Taught in uni so fae/
+taught in uni so fae/
+Additional info/
+additional info/
+
+# Files requested to ignore
+csci291 project 1.mp4
+csci291project1.mp4
+FAQ.docx
+faq.docx
+
+# Webots build artifacts and executables
+build/
+*.exe
+
