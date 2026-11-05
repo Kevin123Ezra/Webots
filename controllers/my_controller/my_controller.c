@@ -41,31 +41,19 @@ int main(int argc, char **argv) {
   wb_motor_set_velocity(right_motor, 0.0);
 
   bool found_wall = false;
-  double brightest = 99999.0;
 
   while (wb_robot_step(TIME_STEP) != -1) {
     double ps_values[8];
     for (i = 0; i < 8; i++)
       ps_values[i] = wb_distance_sensor_get_value(ps[i]);
 
-    for (i = 0; i < 8; i++)
-      printf("ps%d: %.1f  ", i, ps_values[i]);
-    printf("\n");
-
     double light = 0.0;
     for (i = 0; i < 8; i++)
       light += wb_light_sensor_get_value(ls[i]);
     light = light / 8.0;
 
-    printf("light: %.1f\n", light);
-
     if (light < 2000.0)
-      printf("Light detected!\n");
-
-    if (light < brightest) {
-      brightest = light;
-      printf("New brightest: %.1f at time %.1f s\n", brightest, wb_robot_get_time());
-    }
+      printf("Light detected! Light level: %.1f\n", light);
 
     bool front_wall = ps_values[0] > 80.0 || ps_values[7] > 80.0;
     bool right_corner = ps_values[1] > 80.0;
